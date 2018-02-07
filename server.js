@@ -22,20 +22,37 @@ var staticMonitor = ['Public/**/*.js', 'Public/**/*.css', 'View/**/*.html'];
 // 下列文件被修改时将重启easySwoole
 var scriptMonitor = ['App/**/*.php', 'Conf/**/*.php', 'System/**/*.php', 'vendor/**/*.php', 'EasySwooleEvent.php'];
 
-// 监控函数
-staticMonitor.push({
-    match: scriptMonitor,
-    fn: function (event, file) {
-        spawn('php', ['easyswoole', 'reload']).stdout.on('data', function (data) {
-            process.stdout.write(event.toUpperCase() + ': ' + file + '\n');
+var reloadSwoole = function (event, file) {
+    var reloadSpawn = spawn('php', ['easyswoole', 'reload']);
+    reloadSpawn.stdout.on('data', function (data) {
+        process.stdout.write('[FILE ' + event.toUpperCase() + '] ' + file + '\n');
+    });
+    if (reloadSpawn.error) {
+        reloadSpawn.stderr.on('data', function () {
             process.stdout.write(data)
         })
     }
-});
+};
+
+// 监控函数
+var monitor = [
+    {
+        match: staticMonitor, fn: function (event, file) {
+            reloadSwoole(event, file);
+            browserSync.reload(file);
+        }
+    },
+    {
+        match: scriptMonitor, fn: function (event, file) {
+            reloadSwoole(event, file);
+            browserSync.notify('easyswoole reload');
+        }
+    }
+];
 
 // 启动服务
 browserSync.init({
-    files: staticMonitor,
+    files: monitor,
     proxy: 'localhost:9501',
     logPrefix: 'easySwoole',
     open: false
