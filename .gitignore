@@ -1,0 +1,10 @@
+# Created by .ignore support plugin (hsz.mobi)
+
+/.idea/
+/vendor/
+/node_modules/
+/package-lock.json
+/composer.lock
+/easyswoole
+/easyswoole.install
+/Runtime/*

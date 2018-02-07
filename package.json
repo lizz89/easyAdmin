@@ -1,0 +1,23 @@
+{
+    "name": "easyadmin",
+    "version": "1.0.0",
+    "description": "easyAdmin built with easySwoole and layUI",
+    "main": "server.js",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/evalor/easyAdmin.git"
+    },
+    "keywords": [
+        "easyswoole",
+        "admin"
+    ],
+    "author": "eValor",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/evalor/easyAdmin/issues"
+    },
+    "homepage": "https://github.com/evalor/easyAdmin#readme",
+    "dependencies": {
+        "browser-sync": "^2.23.6"
+    }
+}

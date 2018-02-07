@@ -1,0 +1,31 @@
+{
+    "name": "evalor/easy-admin",
+    "description": "easyAdmin built with easySwoole and layUI",
+    "type": "project",
+    "require": {
+        "easyswoole/easyswoole": "2.x-dev",
+        "topthink/think-orm": "dev-master",
+        "topthink/think-template": "dev-master",
+        "topthink/think-cache": "dev-master",
+        "topthink/think-helper": "dev-master",
+        "topthink/think-validate": "dev-master",
+        "topthink/think-log": "dev-master",
+        "easyswoole/easy-whoops": "^1.0"
+    },
+    "require-dev": {
+        "eaglewu/swoole-ide-helper": "dev-master"
+    },
+    "license": "Apache-2.0",
+    "authors": [
+        {
+            "name": "evalor",
+            "email": "mipone@foxmail.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "App\\": "App/",
+            "easyAdmin\\": "System/"
+        }
+    }
+}
